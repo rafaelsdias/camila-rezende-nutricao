@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nutrição Raiz</title>
+<meta name="description" content="Landing page conceitual para nutricionista especializada em emagrecimento sustentável, criada como peça de portfólio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F4EC;
+    --surface:#FFFFFF;
+    --surface-sage:#E4EADD;
+    --ink:#26221D;
+    --ink-soft:#5A554D;
+    --forest:#2F4A3C;
+    --forest-deep:#1E3029;
+    --honey:#D98B2B;
+    --honey-ink:#3A2A12;
+    --blush:#EFD3C7;
+    --line:rgba(38,34,29,0.12);
+    --shadow-soft:0 20px 45px -28px rgba(38,34,29,0.4);
+    --maxw:1140px;
+    --font-display:'Fraunces','Iowan Old Style',Georgia,serif;
+    --font-body:'Figtree','Segoe UI',system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#17211C;
+      --surface:#1F2B24;
+      --surface-sage:#243229;
+      --ink:#F1EDE3;
+      --ink-soft:#C3BDB1;
+      --forest:#9FC9A8;
+      --forest-deep:#0D1712;
+      --honey:#F0AC52;
+      --honey-ink:#241804;
+      --blush:#3C2C25;
+      --line:rgba(241,237,227,0.14);
+      --shadow-soft:0 20px 45px -28px rgba(0,0,0,0.6);
+    }
+  }
+  *{box-sizing:border-box;}
+  html{color-scheme:light dark;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{max-width:100%;display:block;}
+  h1,h2,h3{font-family:var(--font-display);line-height:1.1;margin:0;text-wrap:balance;color:var(--ink);}
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;border:none;background:none;cursor:pointer;}
+
+  :focus-visible{outline:2px solid var(--honey);outline-offset:3px;border-radius:4px;}
+
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:20px;}
+  section{position:relative;overflow:hidden;}
+
+  .eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--honey);
+  }
+  .eyebrow.on-dark{color:var(--blush);}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:14px 26px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+    white-space:nowrap;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary{background:var(--honey);color:var(--honey-ink);box-shadow:var(--shadow-soft);}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-ghost{border:1.5px solid var(--line);color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--forest);}
+
+  header{
+    position:sticky;
+    top:env(safe-area-inset-top,0px);
+    z-index:40;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-block:14px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:var(--font-display);
+    font-weight:600;
+    font-size:19px;
+  }
+  .logo-mark{width:26px;height:26px;color:var(--forest);flex:none;}
+  nav.links{display:none;gap:28px;font-size:15px;font-weight:500;color:var(--ink-soft);}
+  nav.links a:hover{color:var(--forest);}
+  .nav-cta{display:none;}
+
+  .hero{padding-block:48px 56px;}
+  .hero-blob{
+    position:absolute;
+    width:480px;height:480px;
+    right:-180px;top:-140px;
+    background:var(--surface-sage);
+    border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;
+    z-index:0;
+  }
+  .hero-inner{position:relative;z-index:1;display:flex;flex-direction:column;gap:28px;}
+  .hero-copy{display:flex;flex-direction:column;gap:18px;max-width:640px;}
+  .hero h1{font-size:clamp(32px,8vw,52px);font-weight:600;}
+  .hero h1 em{font-style:italic;color:var(--forest);}
+  .hero-sub{font-size:17px;color:var(--ink-soft);max-width:520px;}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:6px;}
+  .hero-credit{font-size:13px;color:var(--ink-soft);}
+  .hero-art{
+    position:relative;
+    align-self:center;
+    width:min(100%,340px);
+  }
+  .photo-frame{
+    position:relative;
+    z-index:1;
+    aspect-ratio:4/5;
+    border-radius:150px 20px 150px 20px;
+    overflow:hidden;
+    box-shadow:var(--shadow-soft);
+  }
+  .photo-frame img{width:100%;height:100%;object-fit:cover;display:block;}
+  .photo-accent{position:absolute;border-radius:50%;z-index:0;}
+  .accent-hero{width:130px;height:130px;background:var(--blush);right:-22px;bottom:-22px;}
+  .accent-about{width:96px;height:96px;background:var(--honey);opacity:.55;left:-18px;top:-18px;}
+
+  .stat-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    padding-block:22px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .stat{text-align:center;}
+  .stat-num{font-family:var(--font-display);font-size:clamp(22px,5vw,30px);font-weight:600;color:var(--forest);}
+  .stat-label{font-size:12.5px;color:var(--ink-soft);margin-top:2px;}
+
+  .section-pad{padding-block:64px;}
+  .section-head{display:flex;flex-direction:column;gap:12px;max-width:620px;margin-bottom:34px;}
+  .section-head h2{font-size:clamp(26px,5.5vw,38px);font-weight:600;}
+  .section-head p{color:var(--ink-soft);font-size:15.5px;}
+
+  .pain{background:var(--surface-sage);}
+  .pain-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  .pain-card{
+    background:var(--surface);
+    border-radius:20px;
+    padding:22px;
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    box-shadow:var(--shadow-soft);
+  }
+  .pain-icon{flex:none;width:34px;height:34px;color:var(--honey);}
+  .pain-card p{font-size:15.5px;color:var(--ink);}
+
+  .method-grid{display:grid;grid-template-columns:1fr;gap:18px;}
+  .method-card{
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .method-num{font-family:var(--font-display);font-style:italic;color:var(--honey);font-size:34px;opacity:.55;}
+  .method-card h3{font-size:20px;font-weight:600;}
+  .method-card p{color:var(--ink-soft);font-size:15px;}
+
+  .about{background:var(--forest-deep);color:#F1EDE3;}
+  .about .eyebrow{color:var(--honey);}
+  .about h2{color:#F1EDE3;}
+  .about-grid{display:flex;flex-direction:column;gap:30px;align-items:center;}
+  .about-art{width:min(100%,280px);position:relative;flex:none;}
+  .about-body{display:flex;flex-direction:column;gap:14px;max-width:560px;}
+  .about-body p{color:#D9D3C4;font-size:15.5px;}
+  .about-name{font-size:15px;color:#D9D3C4;}
+  .credentials{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+  .credentials li{display:flex;gap:10px;font-size:14.5px;color:#D9D3C4;align-items:flex-start;}
+  .credentials svg{flex:none;width:16px;height:16px;margin-top:3px;color:var(--honey);}
+
+  .process-list{display:flex;flex-direction:column;gap:0;}
+  .process-item{
+    display:flex;
+    gap:18px;
+    padding-block:22px;
+    border-top:1px solid var(--line);
+  }
+  .process-item:first-child{border-top:none;}
+  .process-step{font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--forest);flex:none;width:52px;}
+  .process-item h3{font-size:18px;font-weight:600;margin-bottom:4px;}
+  .process-item p{color:var(--ink-soft);font-size:15px;}
+
+  .proof{background:var(--surface-sage);}
+  .testi-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:8px;}
+  .testi-card{
+    background:var(--surface);
+    border-radius:20px;
+    padding:24px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    box-shadow:var(--shadow-soft);
+  }
+  .testi-quote{font-size:15.5px;color:var(--ink);}
+  .testi-who{display:flex;align-items:center;gap:10px;}
+  .avatar{
+    width:38px;height:38px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-display);font-weight:600;font-size:14px;
+    background:var(--blush);color:var(--honey-ink);flex:none;
+  }
+  .testi-name{font-size:13.5px;color:var(--ink-soft);}
+
+  .faq-list{display:flex;flex-direction:column;gap:10px;}
+  details{
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:4px 20px;
+    background:var(--surface);
+  }
+  summary{
+    padding-block:16px;
+    font-weight:600;
+    font-size:15.5px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    list-style:none;
+  }
+  summary::-webkit-details-marker{display:none;}
+  .chev{flex:none;width:18px;height:18px;transition:transform .25s ease;color:var(--ink-soft);}
+  details[open] .chev{transform:rotate(180deg);}
+  .faq-a{padding-bottom:18px;color:var(--ink-soft);font-size:15px;}
+
+  .cta-final{background:var(--forest);color:#F1EDE3;text-align:center;}
+  .cta-final h2{color:#F1EDE3;font-size:clamp(26px,6vw,40px);}
+  .cta-final p{color:#DCE6DF;max-width:480px;margin-inline:auto;}
+  .cta-final-inner{display:flex;flex-direction:column;align-items:center;gap:18px;}
+  .cta-final .btn-primary{margin-top:6px;}
+
+  footer{padding-block:40px 60px;}
+  .foot-inner{display:flex;flex-direction:column;gap:22px;}
+  .foot-top{display:flex;flex-direction:column;gap:6px;}
+  .foot-tag{color:var(--ink-soft);font-size:14.5px;}
+  .foot-links{display:flex;gap:20px;font-size:14.5px;font-weight:500;color:var(--ink-soft);}
+  .foot-links a:hover{color:var(--forest);}
+  .foot-meta{font-size:13px;color:var(--ink-soft);}
+  .foot-disclaimer{font-size:12px;color:var(--ink-soft);opacity:.75;border-top:1px solid var(--line);padding-top:16px;}
+
+  .sticky-cta{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    z-index:50;
+    padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));
+    background:color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter:blur(10px);
+    border-top:1px solid var(--line);
+  }
+  .sticky-cta .btn-primary{width:100%;justify-content:center;}
+
+  .reveal{transition:opacity .6s ease, transform .6s ease;}
+  html.js .reveal{opacity:0;transform:translateY(18px);}
+  html.js .reveal.is-visible{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .btn{transition:none!important;}
+    html.js .reveal{opacity:1;transform:none;}
+  }
+
+  @media (min-width:700px){
+    .pain-grid{grid-template-columns:1fr 1fr;}
+    .method-grid{grid-template-columns:repeat(3,1fr);}
+    .testi-grid{grid-template-columns:repeat(3,1fr);}
+    .stat-strip{max-width:520px;margin-inline:auto;}
+    .about-grid{flex-direction:row;align-items:flex-start;text-align:left;}
+    .sticky-cta{display:none;}
+  }
+
+  @media (min-width:1024px){
+    nav.links{display:flex;}
+    .nav-cta{display:inline-flex;}
+    .hero-inner{flex-direction:row;align-items:center;justify-content:space-between;gap:40px;}
+    .hero-copy{max-width:560px;}
+    .hero-art{align-self:auto;width:380px;}
+    .section-head{margin-inline:auto;text-align:center;align-items:center;}
+    .pain .section-head, .method .section-head, .process .section-head, .about .section-head{text-align:left;align-items:flex-start;margin-inline:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav-inner">
+    <a class="logo" href="#top" aria-label="Nutrição Raiz">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M24 44C24 44 10 36 10 22C10 12 17 6 24 6C31 6 38 12 38 22C38 36 24 44 24 44Z" fill="currentColor" opacity="0.15"/>
+        <path d="M24 42C24 42 13 31 24 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M24 22C24 22 18 20 17 14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="M24 30C24 30 30 28 31 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      </svg>
+      Nutrição Raiz
+    </a>
+    <nav class="links">
+      <a href="#metodo">Método</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#faq">Perguntas</a>
+    </nav>
+    <a class="btn btn-primary nav-cta" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Camila!%20Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20nutricional." target="_blank" rel="noopener">Falar no WhatsApp</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <div class="hero-blob" aria-hidden="true"></div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <span class="eyebrow">Nutrição clínica acolhedora</span>
+        <h1>Emagrecer com <em>leveza</em>, sem dietas que você não consegue manter.</h1>
+        <p class="hero-sub">Acompanhamento nutricional humanizado para mulheres que já tentaram de tudo e querem resultado de verdade, sem restrição extrema e sem culpa.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Camila!%20Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20nutricional." target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.6 14.3c-.3.8-1.6 1.5-2.2 1.6-.6.1-1.3.1-2.1-.1-.5-.1-1.1-.3-1.9-.7-3.3-1.4-5.4-4.7-5.6-4.9-.2-.2-1.3-1.7-1.3-3.3 0-1.6.8-2.3 1.1-2.7.3-.3.7-.4 1-.4h.7c.2 0 .5 0 .7.5.3.6.9 2.1 1 2.3.1.2.1.4 0 .6-.3.6-.6.9-.9 1.3-.1.2-.3.3-.1.6.5.9 1.2 1.7 1.9 2.3.8.7 1.5 1 1.9 1.2.3.1.5.1.7-.1.3-.3.7-.9 1-1.3.2-.3.4-.3.7-.2.3.1 1.9.9 2.2 1.1.3.1.5.2.6.3.1.2.1.9-.2 1.7Z"/></svg>
+            Falar com a Camila no WhatsApp
+          </a>
+        </div>
+        <span class="hero-credit">CRN 12345 · 8 anos de experiência clínica</span>
+      </div>
+      <div class="hero-art">
+        <span class="photo-accent accent-hero" aria-hidden="true"></span>
+        <div class="photo-frame">
+          <img src="images/camila-01.jpg" alt="Camila Rezende, nutricionista, sorrindo e segurando uma romã à mesa com alimentos naturais" loading="eager">
+        </div>
+      </div>
+    </div>
+    <div class="wrap stat-strip">
+      <div class="stat"><div class="stat-num">+500</div><div class="stat-label">mulheres atendidas</div></div>
+      <div class="stat"><div class="stat-num">94%</div><div class="stat-label">mais energia em 30 dias</div></div>
+      <div class="stat"><div class="stat-num">8 anos</div><div class="stat-label">de experiência clínica</div></div>
+    </div>
+  </section>
+
+  <section class="pain section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Você se identifica com isso</span>
+        <h2>Talvez você já tenha vivido isso</h2>
+      </div>
+      <div class="pain-grid">
+        <div class="pain-card reveal">
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3M17 4v4h-4M7 20v-4h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Já fez dieta restritiva e recuperou o peso rápido depois.</p>
+        </div>
+        <div class="pain-card reveal">
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 21 11c0 5.5-9 10-9 10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 12.5h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <p>Sente culpa cada vez que sai do controle alimentar.</p>
+        </div>
+        <div class="pain-card reveal">
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <p>Não tem tempo para pesar e contar tudo o dia inteiro.</p>
+        </div>
+        <div class="pain-card reveal">
+          <svg class="pain-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="3" width="12" height="18" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M9.5 17.5h5M10 8l4 4M14 8l-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <p>As dietas da internet não combinam com a sua rotina real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="method section-pad" id="metodo">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Nosso método</span>
+        <h2>O Método Raiz</h2>
+        <p>Três pilares que sustentam cada plano alimentar, pensados para durar além do primeiro mês.</p>
+      </div>
+      <div class="method-grid">
+        <div class="method-card reveal">
+          <span class="method-num">01</span>
+          <h3>Individualização</h3>
+          <p>Seu plano nasce da sua rotina, não de um protocolo genérico que serve para qualquer pessoa.</p>
+        </div>
+        <div class="method-card reveal">
+          <span class="method-num">02</span>
+          <h3>Sustentabilidade</h3>
+          <p>Mudanças reais, que você consegue manter depois da primeira semana e também depois do primeiro ano.</p>
+        </div>
+        <div class="method-card reveal">
+          <span class="method-num">03</span>
+          <h3>Acompanhamento próximo</h3>
+          <p>Ajustes constantes e suporte entre as consultas, não um plano que você recebe e nunca mais discute.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about section-pad" id="sobre">
+    <div class="wrap about-grid">
+      <div class="about-art reveal">
+        <span class="photo-accent accent-about" aria-hidden="true"></span>
+        <div class="photo-frame">
+          <img src="images/camila-02.jpg" alt="Retrato de Camila Rezende, nutricionista clínica" loading="lazy">
+        </div>
+      </div>
+      <div class="about-body">
+        <span class="eyebrow on-dark reveal">Quem te acompanha</span>
+        <h2 class="reveal">Camila Rezende</h2>
+        <span class="about-name reveal">Nutricionista clínica, CRN 12345</span>
+        <p class="reveal">Depois de anos vendo pacientes sofrerem com dietas da moda, decidi construir uma abordagem diferente. Uma nutrição que une ciência e escuta, sem radicalismo e sem fórmulas prontas.</p>
+        <ul class="credentials reveal">
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Graduação em Nutrição, USP</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Pós-graduação em Comportamento Alimentar</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>8 anos de atendimento clínico</li>
+          <li><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Mais de 500 pacientes acompanhadas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="process section-pad">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Processo</span>
+        <h2>Como funciona o acompanhamento</h2>
+      </div>
+      <div class="process-list">
+        <div class="process-item reveal">
+          <span class="process-step">01</span>
+          <div><h3>Conversa inicial</h3><p>Você me conta sua rotina e seus objetivos, de forma gratuita, direto pelo WhatsApp.</p></div>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-step">02</span>
+          <div><h3>Avaliação completa</h3><p>Anamnese detalhada e avaliação da composição corporal, para entender o ponto de partida real.</p></div>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-step">03</span>
+          <div><h3>Plano individualizado</h3><p>Um plano alimentar pensado para a sua rotina, suas preferências e seus horários.</p></div>
+        </div>
+        <div class="process-item reveal">
+          <span class="process-step">04</span>
+          <div><h3>Acompanhamento contínuo</h3><p>Consultas quinzenais com ajustes, suporte entre as sessões e revisão constante dos objetivos.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="proof section-pad" id="depoimentos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Resultados</span>
+        <h2>Quem já vive essa mudança</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card reveal">
+          <p class="testi-quote">"Em 4 meses perdi 8kg sem sentir que estava de dieta."</p>
+          <div class="testi-who"><span class="avatar">JU</span><span class="testi-name">Juliana, 34 anos</span></div>
+        </div>
+        <div class="testi-card reveal">
+          <p class="testi-quote">"Pela primeira vez consegui manter o resultado depois de parar o acompanhamento."</p>
+          <div class="testi-who"><span class="avatar">PA</span><span class="testi-name">Patrícia, 41 anos</span></div>
+        </div>
+        <div class="testi-card reveal">
+          <p class="testi-quote">"Aprendi a comer sem culpa e sem pesar cada grama de comida."</p>
+          <div class="testi-who"><span class="avatar">RE</span><span class="testi-name">Renata, 29 anos</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq section-pad" id="faq">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Perguntas frequentes</span>
+        <h2>Tire suas dúvidas</h2>
+      </div>
+      <div class="faq-list reveal">
+        <details>
+          <summary>Preciso cortar carboidrato?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <p class="faq-a">Não. O plano é individualizado e, na maioria dos casos, inclui todos os grupos alimentares em quantidades adequadas para o seu objetivo.</p>
+        </details>
+        <details>
+          <summary>Funciona para quem tem tireoide ou SOP?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <p class="faq-a">Sim. A avaliação inicial considera condições de saúde específicas para ajustar o plano com segurança.</p>
+        </details>
+        <details>
+          <summary>O atendimento é online ou presencial?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <p class="faq-a">Os dois formatos estão disponíveis, você escolhe o que funciona melhor para a sua rotina.</p>
+        </details>
+        <details>
+          <summary>Em quanto tempo vejo resultado?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <p class="faq-a">Os primeiros ajustes de energia e digestão costumam aparecer nas primeiras semanas. Resultados de composição corporal variam de pessoa para pessoa.</p>
+        </details>
+        <details>
+          <summary>Quanto custa a consulta?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <p class="faq-a">O valor é combinado na conversa inicial, de acordo com o tipo de acompanhamento escolhido.</p>
+        </details>
+        <details>
+          <summary>Quais formas de pagamento são aceitas?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
+          <p class="faq-a">Pix, cartão de crédito e transferência bancária.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-final section-pad">
+    <div class="wrap cta-final-inner reveal">
+      <h2>Vamos começar essa mudança juntas?</h2>
+      <p>Vagas limitadas por mês, para garantir um atendimento próximo e individualizado para cada paciente.</p>
+      <a class="btn btn-primary" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Camila!%20Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20nutricional." target="_blank" rel="noopener">Quero agendar minha avaliação</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-top">
+      <a class="logo" href="#top" aria-label="Nutrição Raiz">
+        <svg class="logo-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 44C24 44 10 36 10 22C10 12 17 6 24 6C31 6 38 12 38 22C38 36 24 44 24 44Z" fill="currentColor" opacity="0.15"/><path d="M24 42C24 42 13 31 24 8" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+        Nutrição Raiz
+      </a>
+      <span class="foot-tag">Nutrição que respeita o seu tempo.</span>
+    </div>
+    <div class="foot-links">
+      <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <span class="foot-meta">CRN 12345 · Atendimento online e presencial em São Paulo</span>
+    <p class="foot-disclaimer">Projeto conceitual desenvolvido para fins de portfólio. Marca, depoimentos e dados apresentados são fictícios.</p>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a class="btn btn-primary" href="https://wa.me/5511999999999?text=Ol%C3%A1%2C%20Camila!%20Quero%20agendar%20minha%20avalia%C3%A7%C3%A3o%20nutricional." target="_blank" rel="noopener">Falar no WhatsApp</a>
+</div>
+
+<script>
+  document.documentElement.classList.add('js');
+  try{
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.reveal');
+    if(reduced || !('IntersectionObserver' in window)){
+      items.forEach(function(el){ el.classList.add('is-visible'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+      items.forEach(function(el){ io.observe(el); });
+      setTimeout(function(){
+        items.forEach(function(el){ el.classList.add('is-visible'); });
+      }, 4000);
+    }
+  }catch(e){
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+</script>
+</body>
+</html>
